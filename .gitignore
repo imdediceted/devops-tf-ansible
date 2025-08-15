@@ -1,0 +1,17 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+override.tf
+override.tf.json
+terraform.tfvars
+terraform.tfvars.json
+
+# ключи / секреты
+yc-sa-key.json
+*.pem
+*.key
+
+
+ansible/inventory.ini

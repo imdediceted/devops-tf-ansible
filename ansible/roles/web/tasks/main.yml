@@ -1,0 +1,11 @@
+- name: Deploy index.html
+  ansible.builtin.template:
+    src: index.html.j2
+    dest: /var/www/html/index.html
+    mode: '0644'
+
+- name: Ensure nginx is enabled and restarted
+  ansible.builtin.service:
+    name: nginx
+    state: restarted
+    enabled: true

@@ -1,0 +1,25 @@
+- name: Disable default site (if enabled)
+  ansible.builtin.file:
+    path: /etc/nginx/sites-enabled/default
+    state: absent
+  notify: reload nginx
+
+- name: Place proxy vhost
+  ansible.builtin.template:
+    src: proxy3000.conf.j2
+    dest: /etc/nginx/sites-available/proxy3000.conf
+    mode: '0644'
+  notify: reload nginx
+
+- name: Enable proxy vhost
+  ansible.builtin.file:
+    src: /etc/nginx/sites-available/proxy3000.conf
+    dest: /etc/nginx/sites-enabled/proxy3000.conf
+    state: link
+  notify: reload nginx
+
+- name: Ensure nginx is enabled
+  ansible.builtin.service:
+    name: nginx
+    state: started
+    enabled: true

@@ -1,0 +1,17 @@
+- name: Base setup on all nodes
+  hosts: all
+  become: true
+  roles:
+    - common
+
+- name: Configure web servers
+  hosts: web
+  become: true
+  roles:
+    - web
+
+- name: Configure proxy server
+  hosts: proxy
+  become: true
+  roles:
+    - proxy

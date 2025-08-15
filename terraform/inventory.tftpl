@@ -1,0 +1,12 @@
+[web]
+%{ for ip in web_ips ~}
+${ip}
+%{ endfor ~}
+
+[proxy]
+${proxy_ip}
+
+[all:vars]
+ansible_user=${ssh_user}
+ansible_ssh_private_key_file=${ssh_private_key}
+ansible_python_interpreter=/usr/bin/python3
